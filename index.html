@@ -151,10 +151,15 @@
     </div>
     <div data-cards="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
       <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
-        <div data-reveal="" data-card="" style="opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease,border-color .3s ease,box-shadow .3s ease;position:relative;padding:28px;border-radius:20px;border:1px solid rgba(26,26,26,.08);background:#fffdfa;overflow:hidden;box-shadow:0 6px 20px rgba(120,70,30,.05);" style-hover="border-color:rgba(224,122,63,.4);box-shadow:0 16px 40px rgba(120,70,30,.12);">
-          <div style="width:52px;height:52px;border-radius:14px;background:{{ s.grad }};display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 8px 20px rgba(224,122,63,.28);" dangerouslySetInnerHTML="{{ s.icon }}"></div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#1a1a1a;margin-bottom:9px;letter-spacing:-.01em;">{{ s.title }}</h3>
-          <p style="font-size:15px;line-height:1.55;color:#6b6157;">{{ s.desc }}</p>
+        <div data-reveal="" data-card="" style="opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease,border-color .3s ease,box-shadow .3s ease;position:relative;border-radius:20px;border:1px solid rgba(26,26,26,.08);background:#fffdfa;overflow:hidden;box-shadow:0 6px 20px rgba(120,70,30,.05);" style-hover="border-color:rgba(224,122,63,.4);box-shadow:0 16px 40px rgba(120,70,30,.12);">
+          <div style="position:relative;aspect-ratio:16/10;overflow:hidden;">
+            <image-slot id="{{ s.slot }}" shape="rect" placeholder="Drop service image"></image-slot>
+            <div style="position:absolute;bottom:14px;left:14px;width:44px;height:44px;border-radius:12px;background:{{ s.grad }};display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(224,122,63,.28);pointer-events:none;" dangerouslySetInnerHTML="{{ s.icon }}"></div>
+          </div>
+          <div style="padding:22px 24px 26px;">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#1a1a1a;margin-bottom:9px;letter-spacing:-.01em;">{{ s.title }}</h3>
+            <p style="font-size:15px;line-height:1.55;color:#6b6157;">{{ s.desc }}</p>
+          </div>
         </div>
       </sc-for>
     </div>
@@ -346,12 +351,12 @@ class Component extends DCLogic {
 
   renderVals() {
     const services = [
-      { title: "Websites & Web Apps", desc: "Fast, modern sites and full web apps built to convert and scale.", grad: "linear-gradient(135deg,#e07a3f,#c9522e)", icon: this.icon("globe") },
-      { title: "AI Automation & Chatbots", desc: "Custom AI agents and automations that handle the work for you, 24/7.", grad: "linear-gradient(135deg,#c9522e,#eab543)", icon: this.icon("bot") },
-      { title: "Dashboards & Internal Tools", desc: "Business dashboards and internal systems that make decisions obvious.", grad: "linear-gradient(135deg,#eab543,#e07a3f)", icon: this.icon("chart") },
-      { title: "E-commerce", desc: "Storefronts and checkout flows built to sell, from catalog to payment.", grad: "linear-gradient(135deg,#e07a3f,#b0491f)", icon: this.icon("cart") },
-      { title: "Mobile Apps", desc: "Cross-platform apps that put your business in your customers' pockets.", grad: "linear-gradient(135deg,#eab543,#c9522e)", icon: this.icon("phone") },
-      { title: "Anything digital", desc: "Got a problem that doesn't fit a box? If it's digital, I can build it.", grad: "linear-gradient(135deg,#e07a3f,#c9522e)", icon: this.icon("spark") }
+      { slot: "svc-1", title: "Websites & Web Apps", desc: "Fast, modern sites and full web apps built to convert and scale.", grad: "linear-gradient(135deg,#e07a3f,#c9522e)", icon: this.icon("globe") },
+      { slot: "svc-2", title: "AI Automation & Chatbots", desc: "Custom AI agents and automations that handle the work for you, 24/7.", grad: "linear-gradient(135deg,#c9522e,#eab543)", icon: this.icon("bot") },
+      { slot: "svc-3", title: "Dashboards & Internal Tools", desc: "Business dashboards and internal systems that make decisions obvious.", grad: "linear-gradient(135deg,#eab543,#e07a3f)", icon: this.icon("chart") },
+      { slot: "svc-4", title: "E-commerce", desc: "Storefronts and checkout flows built to sell, from catalog to payment.", grad: "linear-gradient(135deg,#e07a3f,#b0491f)", icon: this.icon("cart") },
+      { slot: "svc-5", title: "Mobile Apps", desc: "Cross-platform apps that put your business in your customers' pockets.", grad: "linear-gradient(135deg,#eab543,#c9522e)", icon: this.icon("phone") },
+      { slot: "svc-6", title: "Anything digital", desc: "Got a problem that doesn't fit a box? If it's digital, I can build it.", grad: "linear-gradient(135deg,#e07a3f,#c9522e)", icon: this.icon("spark") }
     ];
     const steps = [
       { n: "1", title: "Discovery", desc: "We talk through the problem, your goals, and what success looks like." },
